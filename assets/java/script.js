@@ -17,6 +17,7 @@ searchBtn.addEventListener("click", () => {
   }
 });
 
+
 function fetchEvents(location) {
   const url = `https://app.ticketmaster.com/discovery/v2/events.json?city=${location}&apikey=${apiKeyTicketmaster}`;
 
@@ -27,19 +28,40 @@ function fetchEvents(location) {
     })
     .catch((error) => console.error("Error fetching events:", error));
 }
-
 function displayEvents(events) {
   events.forEach((event) => {
     const eventItem = document.createElement("div");
     eventItem.classList.add("event-item");
-    eventItem.textContent = event.name;
 
+    const eventInfo = document.createElement("div");
+    eventInfo.classList.add("event-info");
+
+    const eventName = document.createElement("span");
+    eventName.classList.add("event-name");
+    eventName.textContent = event.name;
+    eventInfo.appendChild(eventName);
+
+    const eventDate = document.createElement("span");
+    eventDate.classList.add("event-date");
+    eventDate.textContent = new Date(event.dates.start.localDate).toLocaleDateString();
+    eventInfo.appendChild(eventDate);
+
+    // Check if localTime property exists
+    if (event.dates.start.localTime) {
+      const eventTime = document.createElement("span");
+      eventTime.classList.add("event-time");
+      eventTime.textContent = new Date(event.dates.start.localTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      eventInfo.appendChild(eventTime);
+    }
+
+    eventItem.appendChild(eventInfo);
     eventsList.appendChild(eventItem);
 
     // Add click event listener to the event item
     eventItem.addEventListener("click", () => {
       eventDetails.innerHTML = ""; // Clear previous event details
       displayEventDetails(event);
+      console.log()
     });
   });
 }
