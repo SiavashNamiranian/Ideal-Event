@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/advancedFormat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/toArray.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Ideal Event</title>
 </head>
 <body>
@@ -16,12 +24,18 @@
             <button id="search-btn">Search</button>
         </section>
         <section id="events-list">
-            <!-- Events will be appended here -->
+            <!-- Inside the events-list section -->
+            <div class="event-item">
+            <div class="event-info">
+        <!-- Event name, date, and time will be appended here -->
+        </div>
+        </div>
+        
         </section>
         <section id="event-details">
             <!-- Event details and weather info will be displayed here -->
         </section>
     </main>
-    <script src="script.js"></script>
+    <script src="./assets/java/script.js"></script>
 </body>
 </html>
