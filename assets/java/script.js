@@ -2,8 +2,8 @@ const searchBtn = document.getElementById("search-btn");
 const eventsList = document.getElementById("events-list");
 const eventDetails = document.getElementById("event-details");
 
-const apiKeyWeather = "your_openweathermap_api_key";
-const apiKeyTicketmaster = "your_ticketmaster_api_key";
+const apiKeyWeather = "d76d660f257500185c8632c23508ba25";
+const apiKeyTicketmaster = "BIjcHtV4tsaMzOb5wVMzgE5AHZWwS5hl";
 
 searchBtn.addEventListener("click", () => {
   const location = document.getElementById("location").value;
