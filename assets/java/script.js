@@ -17,7 +17,6 @@ searchBtn.addEventListener("click", () => {
   }
 });
 
-
 function fetchEvents(location) {
   const url = `https://app.ticketmaster.com/discovery/v2/events.json?city=${location}&apikey=${apiKeyTicketmaster}`;
 
@@ -28,7 +27,20 @@ function fetchEvents(location) {
     })
     .catch((error) => console.error("Error fetching events:", error));
 }
+
 function displayEvents(events) {
+  // Filter only upcoming events and limit to a maximum of 30 events
+  events = events
+    .filter((event) => new Date(event.dates.start.localDate) >= new Date())
+    .slice(0, 30);
+
+  // Sort events in ascending order by date and time
+  events.sort((a, b) => {
+    const aDateTime = new Date(a.dates.start.localDate + "T" + (a.dates.start.localTime || "00:00:00"));
+    const bDateTime = new Date(b.dates.start.localDate + "T" + (b.dates.start.localTime || "00:00:00"));
+    return aDateTime - bDateTime;
+  });
+
   events.forEach((event) => {
     const eventItem = document.createElement("div");
     eventItem.classList.add("event-item");
@@ -46,11 +58,14 @@ function displayEvents(events) {
     eventDate.textContent = new Date(event.dates.start.localDate).toLocaleDateString();
     eventInfo.appendChild(eventDate);
 
-    // Check if localTime property exists
+    // Combine the localDate and localTime into a single string and create a Date object
+    const eventDateTime = new Date(event.dates.start.localDate + "T" + (event.dates.start.localTime || "00:00:00"));
+
+    // Display the start time
     if (event.dates.start.localTime) {
       const eventTime = document.createElement("span");
       eventTime.classList.add("event-time");
-      eventTime.textContent = new Date(event.dates.start.localTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      eventTime.textContent = eventDateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       eventInfo.appendChild(eventTime);
     }
 
@@ -61,7 +76,6 @@ function displayEvents(events) {
     eventItem.addEventListener("click", () => {
       eventDetails.innerHTML = ""; // Clear previous event details
       displayEventDetails(event);
-      console.log()
     });
   });
 }
@@ -76,22 +90,30 @@ function displayEventDetails(event) {
   const eventTitle = document.createElement("h2");
   eventTitle.textContent = event.name;
   eventDetails.appendChild(eventTitle);
-
+  console.log("Event Coords:", eventCoords);
   // Add more event details as needed
 }
 
 function fetchWeather(lat, lon, date) {
-  const url = `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${lat}&lon=${lon}&dt=${Math.floor(new Date(date).getTime() / 1000)}&units=imperial&appid=${apiKeyWeather}`;
+  const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKeyWeather}`;
 
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      displayWeather(data.current);
+      // Find the forecast closest to the event date
+      const closestForecast = data.list.reduce((prev, curr) => {
+        const prevTimeDiff = Math.abs(new Date(prev.dt_txt) - new Date(date));
+        const currTimeDiff = Math.abs(new Date(curr.dt_txt) - new Date(date));
+        return currTimeDiff < prevTimeDiff ? curr : prev;
+      });
+
+      displayWeather(closestForecast);
     })
     .catch((error) => console.error("Error fetching weather:", error));
 }
 
 function displayWeather(weather) {
+  console.log(weather);
   const weatherInfo = document.createElement("div");
   weatherInfo.classList.add("weather-info");
 
@@ -103,7 +125,9 @@ function displayWeather(weather) {
   humidity.textContent = `Humidity: ${weather.humidity}%`;
   weatherInfo.appendChild(humidity);
 
-  // Add more weather details as needed
+  const windSpeed = document.createElement("p");
+  windSpeed.textContent = `Wind Speed: ${weather.wind_speed} mph`;
+  weatherInfo.appendChild(windSpeed);
 
   eventDetails.appendChild(weatherInfo);
 }
