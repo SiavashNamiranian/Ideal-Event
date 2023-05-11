@@ -17,23 +17,31 @@ header {
   margin-top: 20px;  
 }
 
+#result {
+    display:flex;
+}
+
 .event-info {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
-  width: 100%;
+  width: 50vw;
+}
+
+#events-list {
+    margin:0 50px 0 50px;
 }
 
 .event-name {
-  flex-grow: 1;
+  /* flex-grow: 1; */
+  width:20vw;
 }
 
 .event-date,
 .event-time {
- margin-left: 1rem;
-
-    display: flex;
-    justify-content: center; 
-    margin-top: 20px;  
-
+ /* margin-left: 1rem; */
+width:5vw;
+    /* display: flex;
+    justify-content: center;  */
+    /* margin-top: 20px;   */
 }
