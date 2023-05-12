@@ -118,7 +118,7 @@ function displayWeather(weather) {
   weatherInfo.classList.add("weather-info");
 
   const reportDate = document.createElement("p");
-  reportDate.textContent = 'Most relevant date: ' + (weather.dt_txt) +" weather";
+  reportDate.textContent = 'Most relevant date: ' + (new Date(weather.dt_txt).toLocaleDateString()) +" weather";
   weatherInfo.appendChild(reportDate);
 
   const temperature = document.createElement("p");
