@@ -106,13 +106,14 @@ function fetchWeather(lat, lon, date) {
         const currTimeDiff = Math.abs(new Date(curr.dt_txt) - new Date(date));
         return currTimeDiff < prevTimeDiff ? curr : prev;
       });
-
+      
       displayWeather(closestForecast);
     })
     .catch((error) => console.error("Error fetching weather:", error));
 }
 
 function displayWeather(weather) {
+ 
   console.log(weather);
   const weatherInfo = document.createElement("div");
   weatherInfo.classList.add("weather-info");
