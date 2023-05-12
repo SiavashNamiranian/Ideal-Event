@@ -117,16 +117,20 @@ function displayWeather(weather) {
   const weatherInfo = document.createElement("div");
   weatherInfo.classList.add("weather-info");
 
+  const reportDate = document.createElement("p");
+  reportDate.textContent = 'Most relevant date: ' + (weather.dt_txt) +" weather";
+  weatherInfo.appendChild(reportDate);
+
   const temperature = document.createElement("p");
-  temperature.textContent = `Temperature: ${weather.temp} °F`;
+  temperature.textContent = `Temperature: ${weather.main.temp} °F`;
   weatherInfo.appendChild(temperature);
 
   const humidity = document.createElement("p");
-  humidity.textContent = `Humidity: ${weather.humidity}%`;
+  humidity.textContent = `Humidity: ${weather.main.humidity}%`;
   weatherInfo.appendChild(humidity);
 
   const windSpeed = document.createElement("p");
-  windSpeed.textContent = `Wind Speed: ${weather.wind_speed} mph`;
+  windSpeed.textContent = `Wind Speed: ${weather.wind.speed} mph`;
   weatherInfo.appendChild(windSpeed);
 
   eventDetails.appendChild(weatherInfo);
