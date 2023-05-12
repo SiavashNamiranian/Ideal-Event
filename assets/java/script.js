@@ -5,7 +5,7 @@ const eventDetails = document.getElementById("event-details");
 const apiKeyWeather = "d76d660f257500185c8632c23508ba25";
 const apiKeyTicketmaster = "BIjcHtV4tsaMzOb5wVMzgE5AHZWwS5hl";
 
-searchBtn.addEventListener("click", () => {
+searchBtn.addEventListener("click", (event) => {
   const location = document.getElementById("location").value;
 
   // Clear previous search results
@@ -15,6 +15,7 @@ searchBtn.addEventListener("click", () => {
   if (location) {
     fetchEvents(location);
   }
+  event.preventDefault()
 });
 
 function fetchEvents(location) {
