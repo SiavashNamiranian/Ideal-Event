@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
+
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/advancedFormat.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/toArray.js"></script>
@@ -16,13 +19,17 @@
 </head>
 <body>
     <header>
-        <h1>Your Ideal Event!</h1>
+        <h1>Ideal Event!</h1>
     </header>
     <main>
+        <form>
         <section id="search">
             <input type="text" id="location" placeholder="Enter a location">
-            <button id="search-btn" class="button-primary">Search</button>
+
+            <button type ="submit" id="search-btn" class="button-primary">Search</button>
+
         </section>
+        </form>
         <section id="result">
             <section id="events-list">
                 <!-- Inside the events-list section -->
@@ -38,6 +45,7 @@
             </section>
         </section>    
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./assets/java/script.js"></script>
 </body>
 </html>
