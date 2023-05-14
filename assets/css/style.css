@@ -4,6 +4,8 @@ body {
   padding: 0;
   min-height:100vh;
 }
+
+/* makes the body content fit  */
 .body-container{
   min-height:100vh;
   display:flex;
@@ -17,6 +19,7 @@ header {
   padding:7vh;
 }
 
+/* img fitting in the left hand side in the nav bar */
 #img{
   width:auto;
   height:auto;
