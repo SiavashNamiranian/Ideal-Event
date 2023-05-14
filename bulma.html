@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ideal Events</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/advancedFormat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/toArray.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<nav class="navbar is-transparent">
+    <div class="navbar-brand">
+        <a class="navbar-item">
+            <img id="img" src="./assets/css/Ideal_Events.jpg" alt="Ideal Events Logo">
+        </a>
+        <div class="navbar-burger" data-target="navbarExampleTransparentExample">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<main class="main-container">
+    <body class="body-container">
+        <!-- Hero content: will be in the middle -->
+        <div class="hero-body has-background-white">
+            <div class="container has-text-centered-backgorund">
+                <form>
+                    <!--search button form-->
+                    <section id="search" class="control">
+                        <input type="text" id="location" placeholder="Enter a location">
+                        <div class="control">
+                            <button type="submit" id="search-btn" class="button is-primary">Search</button>
+                        </div>
+                    </section>
+                    <p class="title has-text-black">
+                        weather and events go right here
+
+                    <section id="result" class="has-text-black">
+                        <section id="events-list">
+                            <!-- Inside the events-list section -->
+                            <div class="event-item">
+                                <div class="event-info">
+                                    <!-- Event name, date, and time will be appended here -->
+                                </div>
+                            </div>
+
+                        </section>
+                        <section id="event-details">
+                            <!-- Event details and weather info will be displayed here -->
+                        </section>
+    </body>
+</main>
+
+<!--Hero footer: will stick at the bottom -->
+<footer class="footer has-background-black">
+    <div class="content has-text-centered">
+        <p> my footer is now at the bottom but doesnt want to take up the whole space
+
+        </p>
+    </div>
+    <script src="./assets/java/script.js"></script>
+</footer>
+
+</html>
