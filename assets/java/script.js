@@ -14,6 +14,9 @@ searchBtn.addEventListener("click", (event) => {
 
   if (location) {
     fetchEvents(location);
+  } else if (!location) {
+    alert("Enter Desired Location")
+    return
   }
   event.preventDefault()
 });
@@ -24,6 +27,8 @@ function fetchEvents(location) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
+      console.log(data);
       displayEvents(data._embedded.events);
     })
     .catch((error) => console.error("Error fetching events:", error));
@@ -34,7 +39,7 @@ function displayEvents(events) {
   events = events
     .filter((event) => new Date(event.dates.start.localDate) >= new Date())
     .slice(0, 30);
-
+console.log(new Date());
   // Sort events in ascending order by date and time
   events.sort((a, b) => {
     const aDateTime = new Date(a.dates.start.localDate + "T" + (a.dates.start.localTime || "00:00:00"));
