@@ -2,21 +2,13 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  min-height:100vh;
-}
-
-/* makes the body content fit  */
-.body-container{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
 }
 
 header {
   text-align: center;
   color:rgb(204, 255, 0);
   background-image: linear-gradient(to right, blue, green);
-  padding:7vh;
+  padding:5vh;
 }
 
 /* img fitting in the left hand side in the nav bar */
@@ -28,12 +20,19 @@ header {
 }
 
 #location {
-  width:10vw;
+  width:15vw;
   margin-right:2px;
-  background-color: rgb(181, 239, 220);
+  background-color: rgba(14, 86, 186, 0.541);
   color:black;
+  font-size:1.8vw;
+  border-radius: 2px;
   margin-right: 5px; 
   padding-left:5px;
+  height:36px;
+}
+
+#search-btn {
+  font-size:1.9vw;
 }
 
 #search {
@@ -57,29 +56,64 @@ header {
 }
 
 #events-list {
-    margin:0 50px 0 50px;
+    margin:0 20px 0 10px;    
+    background-image: linear-gradient(to left, rgb(144, 201, 87), rgb(243, 192, 255));
+    width: fit-content;
+    height: fit-content;
+    padding: 7px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 12px 12px 2px 1px rgba(0, 0, 95, 0.55);;
+    min-height: 50vh;
+    font-size: 1vw;
+
+}
+
+#event-details {
+  padding: 5px 0px 2px 15px;
+  
 }
 
 .event-name {
   /* flex-grow: 1; */
-  width:20vw;
+  width:30vw;
 }
 
 .event-date,
 .event-time {
  /* margin-left: 1rem; */
 width:10vw;
-    /* display: flex;
-    justify-content: center;  */
+display: flex;
+justify-content: right; 
     /* margin-top: 20px;   */
 }
 
 .event-item{
   display: flex;
   justify-content: space-between;
+  padding: 2px;
+
+}
+
+.event-item:hover{
+  background-color: rgba(82, 4, 82, 0.345);
+  color:white;
+  border-radius: 2px;
 }
 
 
+
+h2 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 2.5vw;
+}
+
+
+.weather-info {
+  font-size: 1.5vw;
+}
 @media (min-width: 400px) {
 
 }
