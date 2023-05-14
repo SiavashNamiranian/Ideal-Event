@@ -2,13 +2,6 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: rgb(237, 227, 202);
-}
-
-h1{
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
-  font-style: italic;
-  font-size: 5vw;
 }
 
 header {
@@ -16,6 +9,14 @@ header {
   color:rgb(204, 255, 0);
   background-image: linear-gradient(to right, blue, green);
   padding:5vh;
+}
+
+/* img fitting in the left hand side in the nav bar */
+#img{
+  width:auto;
+  height:auto;
+  max-height: 110px;
+  max-width:250px;
 }
 
 #location {
@@ -115,4 +116,11 @@ h2 {
 }
 @media (min-width: 400px) {
 
+}
+
+.footer{
+  margin-top:auto;
+  bottom:0;
+  width:100%;
+  height:60px;
 }
