@@ -40,6 +40,7 @@ function displayEvents(events) {
     .filter((event) => new Date(event.dates.start.localDate) >= new Date())
     .slice(0, 30);
 console.log(new Date());
+
   // Sort events in ascending order by date and time
   events.sort((a, b) => {
     const aDateTime = new Date(a.dates.start.localDate + "T" + (a.dates.start.localTime || "00:00:00"));
@@ -97,6 +98,21 @@ function displayEventDetails(event) {
   eventTitle.textContent = event.name;
   eventDetails.appendChild(eventTitle);
   console.log("Event Coords:", eventCoords);
+
+  const saleDate = document.createElement("p");
+  saleDate.classList.add("adition-info");
+  saleDate.textContent = 'Available for purchase: '+ (new Date(event.sales.public.startDateTime).toLocaleDateString())+' to '+(new Date(event.sales.public.endDateTime).toLocaleDateString());
+  eventDetails.appendChild(saleDate);
+
+  const limit = document.createElement("p");
+  limit.classList.add("adition-info");
+  limit.textContent = event.ticketLimit.info;
+  eventDetails.appendChild(limit);
+
+  const notes = document.createElement("p");
+  notes.classList.add("adition-info");
+  notes.textContent = event.pleaseNote;
+  eventDetails.appendChild(notes);
   // Add more event details as needed
 }
 
@@ -106,6 +122,7 @@ function fetchWeather(lat, lon, date) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
+      console.log(data)
       // Find the forecast closest to the event date
       const closestForecast = data.list.reduce((prev, curr) => {
         const prevTimeDiff = Math.abs(new Date(prev.dt_txt) - new Date(date));
@@ -125,7 +142,7 @@ function displayWeather(weather) {
   weatherInfo.classList.add("weather-info");
 
   const reportDate = document.createElement("p");
-  reportDate.textContent = 'Most relevant date: ' + (new Date(weather.dt_txt).toLocaleDateString()) +" weather";
+  reportDate.textContent = 'Most relevant forecast available: ' + (new Date(weather.dt_txt).toLocaleDateString());
   weatherInfo.appendChild(reportDate);
 
   const temperature = document.createElement("p");
@@ -139,6 +156,8 @@ function displayWeather(weather) {
   const windSpeed = document.createElement("p");
   windSpeed.textContent = `Wind Speed: ${weather.wind.speed} mph`;
   weatherInfo.appendChild(windSpeed);
+
+  
 
   eventDetails.appendChild(weatherInfo);
 }
