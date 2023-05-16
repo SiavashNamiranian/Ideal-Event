@@ -6,7 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    
+
+    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"> -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/advancedFormat.js"></script>
@@ -19,17 +23,21 @@
 </head>
 <body>
     <header>
-        <h1>Ideal Event!</h1>
+        <img id="img" src="./assets/css/Ideal_Events.jpg" alt="App logo">
+        <!-- <h1>Ideal Event!</h1> -->
+        
+        <form>
+            <section id="search">
+                <input type="text" id="location" placeholder="Enter a location">
+                <p> Date Range: <input type="text" id="datepicker1" placeholder="Sart Date"> <input type="text" id="datepicker2" placeholder="End Date"></p>
+    
+                <button type ="submit" id="search-btn" class="button-primary">Search</button>
+    
+            </section>
+            </form>
     </header>
     <main>
-        <form>
-        <section id="search">
-            <input type="text" id="location" placeholder="Enter a location">
 
-            <button type ="submit" id="search-btn" class="button-primary">Search</button>
-
-        </section>
-        </form>
         <section id="result">
             <section id="events-list"> Your search results will appear here:
                 <!-- Inside the events-list section -->
@@ -41,10 +49,11 @@
             
             </section>
             <section id="event-details">
-                <!-- Event details and weather info will be displayed here -->
+                Event details and weather info will be displayed here
             </section>
         </section>    
     </main>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./assets/java/script.js"></script>
 </body>
