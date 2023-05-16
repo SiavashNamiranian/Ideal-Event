@@ -5,10 +5,20 @@ body {
 }
 
 header {
-  text-align: center;
-  color:rgb(204, 255, 0);
+  color:rgb(255, 225, 0);
   background-image: linear-gradient(to right, blue, green);
-  padding:5vh;
+  padding:1vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+h1{
+  text-decoration: underline;
+  font-family:fantasy;
+  margin-top:20px;
+  rotate: -15deg;
+  font-style:oblique;
+  text-shadow: red 2px 2px 5px;
 }
 
 /* img fitting in the left hand side in the nav bar */
@@ -17,35 +27,40 @@ header {
   height:auto;
   max-height: 110px;
   max-width:250px;
+  display: inline-block;
 }
 
-#location {
-  width:15vw;
+#location, #datepicker1, #datepicker2 {
+  width:10vw;
   margin-right:2px;
-  background-color: rgba(14, 86, 186, 0.541);
+  background-color: rgba(219, 223, 227, 0.541);
   color:black;
-  font-size:1.8vw;
+  font-size:1.4vw;
   border-radius: 2px;
   margin-right: 5px; 
   padding-left:5px;
   height:36px;
 }
 
+#date {
+  margin-left:5px;
+}
+
 #search-btn {
-  font-size:1.9vw;
+  font-size:1.4vw;
 }
 
 #search {
   display: flex;
+  flex-flow: row wrap;
   justify-content: center;
-  align-items: center;
-  margin:10px; 
- 
-  
+  /* align-items: center; */
+  margin:10px;  
 }
 
 #result {
     display:flex;
+    margin-top:20px;
 }
 
 .event-info {
@@ -67,7 +82,7 @@ header {
     border-radius: 10px;
     box-shadow: 12px 12px 2px 1px rgba(0, 0, 95, 0.55);;
     min-height: 10vh;
-    font-size: 1vw;
+    font-size: 1.4vw;
 
 }
 
