@@ -1,15 +1,9 @@
 const searchBtn = document.getElementById("search-btn");
 const eventsList = document.getElementById("events-list");
 const eventDetails = document.getElementById("event-details");
-const dateoneEl = document.getElementById("datepicker1");
-const datetwoEl = document.getElementById("datepicker2");
-
 
 const apiKeyWeather = "d76d660f257500185c8632c23508ba25";
 const apiKeyTicketmaster = "BIjcHtV4tsaMzOb5wVMzgE5AHZWwS5hl";
-
-
-
 
 searchBtn.addEventListener("click", (event) => {
   const location = document.getElementById("location").value;
@@ -20,30 +14,12 @@ searchBtn.addEventListener("click", (event) => {
 
   if (location) {
     fetchEvents(location);
-  } else if (dateoneEl&&datetwoEl) {
-    console.log(dateoneEl.value);
-    console.log(datetwoEl.value);
-   };
+  } else if (!location) {
+    alert("Enter Desired Location")
+    return
+  }
   event.preventDefault()
 });
-
-$(function () {
-  $("#datepicker1").datepicker({
-    changeMonth: true,
-    changeYear: true,
-  });
-});
-
-$(function () {
-  $("#datepicker2").datepicker({
-    changeMonth: true,
-    changeYear: true,
-  });
-});
-
-
-
-
 
 function fetchEvents(location) {
   const url = `https://app.ticketmaster.com/discovery/v2/events.json?city=${location}&apikey=${apiKeyTicketmaster}`;
@@ -51,6 +27,7 @@ function fetchEvents(location) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       console.log(data);
       displayEvents(data._embedded.events);
     })
@@ -127,31 +104,33 @@ function displayEventDetails(event) {
   saleDate.textContent = 'Available for purchase: '+ (new Date(event.sales.public.startDateTime).toLocaleDateString())+' to '+(new Date(event.sales.public.endDateTime).toLocaleDateString());
   eventDetails.appendChild(saleDate);
 
-if(event.ticketLimit.info){
   const limit = document.createElement("p");
   limit.classList.add("adition-info");
   limit.textContent = event.ticketLimit.info;
   eventDetails.appendChild(limit);
-} else{return};
 
-if(event.pleaseNote){
   const notes = document.createElement("p");
   notes.classList.add("adition-info");
   notes.textContent = event.pleaseNote;
   eventDetails.appendChild(notes);
   // Add more event details as needed
-} else {return};
-
 }
 
 function fetchWeather(lat, lon, date) {
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,precipitation,cloudcover,windspeed_10m&temperature_unit=fahrenheit&windspeed_unit=mph&forecast_days=16&timezone=auto`;
+  const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKeyWeather}`;
 
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
       console.log(data)
+      // Find the forecast closest to the event date
+      const closestForecast = data.list.reduce((prev, curr) => {
+        const prevTimeDiff = Math.abs(new Date(prev.dt_txt) - new Date(date));
+        const currTimeDiff = Math.abs(new Date(curr.dt_txt) - new Date(date));
+        return currTimeDiff < prevTimeDiff ? curr : prev;
+      });
       
+      displayWeather(closestForecast);
     })
     .catch((error) => console.error("Error fetching weather:", error));
 }
