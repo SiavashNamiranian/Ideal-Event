@@ -9,6 +9,9 @@
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/advancedFormat.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/toArray.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
@@ -17,16 +20,54 @@
 <nav class="navbar is-transparent">
     <!--  -->
     <div class="navbar-brand">
-        <!-- IMG inserted in this class -->      
+        <!-- IMG inserted in this class -->
         <a class="navbar-item">
             <img id="img" src="./assets/css/Ideal_Events.jpg" alt="Ideal Events Logo">
         </a>
+
         <!-- this burger needs to be adjusted to work with javaScript and with its animations in CSS -->
         <div class="navbar-burger" data-target="navbarExampleTransparentExample">
             <span></span>
             <span></span>
         </div>
     </div>
+    <div id="navbarExampleTransparentExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="#">
+            Contact Us
+          </a>
+        </div>
+    <!-- Nav end where we will be placing specified items -->
+    <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+              <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="https://bulma.io" target="_blank" href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=https://bulma.io&amp;via=jgthms">
+                <span class="icon">
+                  <i class="fab fa-twitter"></i>
+                </span>
+                <span>
+                  Tweet
+                </span>
+              </a>
+            </p>
+            <p class="control">
+              <a class="button is-primary" href="https://github.com/jgthms/bulma/releases/download/0.9.4/bulma-0.9.4.zip">
+                <span class="icon">
+                  <i class="fas fa-download"></i>
+                </span>
+                <span>Download</span>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+</nav>
+
+
 </nav>
 <!-- haing the main allows the page to have proper setup, gave it a class just in case we need to give it adjustments -->
 <main class="main-container">
@@ -38,13 +79,27 @@
                 <form>
                     <!--search button form-->
                     <section id="search" class="control">
+
+                        <input class="input" type="text" id="location" placeholder="Enter a location">
+
                         <input type="text" id="location" placeholder="Enter a location">
                         <p class="and-or-text">and/or</p>
                         <input type="text" id="eventName" placeholder="Enter an event name">
+                      
                         <div class="control">
-                            <button type="submit" id="search-btn" class="button is-primary">Search</button>
+                            <button type="submit" id="search-btn" >Search</button>
                         </div>
                     </section>
+
+                </form>
+                
+                <section id="result" class="has-text-black">
+                    <section id="events-list">
+                        <!-- Inside the events-list section -->
+                        <div class="event-item">
+                            <div class="event-info">
+                                <!-- Event name, date, and time will be appended here -->
+
                     <p class="title has-text-black">
                         Events
             
@@ -56,11 +111,13 @@
                                 <div class="event-info">
                                     <!-- Event name, date, and time will be appended here -->
                                 </div>
+
                             </div>
-                        </section>
-                        <section id="event-details">
-                            <!-- Event details and weather info will be displayed here -->
-                        </section>
+                        </div>
+                    </section>
+                    <section id="event-details">
+                        <!-- Event details and weather info will be displayed here -->
+                    </section>
     </body>
 </main>
 
@@ -68,8 +125,8 @@
 <footer class="footer has-background-black">
     <!--this hero let the text be centered at the bottom of the page-->
     <div class="content has-text-centered">
-        <p> 
-            my footer is now at the bottom but doesnt want to take up the whole space
+        <p>
+            contact info, github, and email will go here!!! Href evertything using bulma and html
         </p>
     </div>
 
