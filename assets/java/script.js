@@ -7,32 +7,44 @@ const apiKeyTicketmaster = "BIjcHtV4tsaMzOb5wVMzgE5AHZWwS5hl";
 
 searchBtn.addEventListener("click", (event) => {
   const location = document.getElementById("location").value;
+  const eventName = document.getElementById("eventName").value;
 
   // Clear previous search results
   eventsList.innerHTML = "";
   eventDetails.innerHTML = "";
 
-  if (location) {
-    fetchEvents(location);
-  } else if (!location) {
-    alert("Enter Desired Location")
-    return
+  if (!location && !eventName) {
+    alert("Please enter a location or event name");
+    return;
   }
-  event.preventDefault()
+
+  fetchEvents(location, eventName);
+  event.preventDefault();
 });
 
-function fetchEvents(location) {
-  const url = `https://app.ticketmaster.com/discovery/v2/events.json?city=${location}&apikey=${apiKeyTicketmaster}`;
+
+
+function fetchEvents(location, eventName) {
+  let url = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=' + apiKeyTicketmaster;
+
+  if (location) {
+    url += '&city=' + location;
+  }
+
+  if (eventName) {
+    url += '&keyword=' + eventName;
+  }
 
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      console.log(data);
       displayEvents(data._embedded.events);
     })
     .catch((error) => console.error("Error fetching events:", error));
 }
+
+
 
 function displayEvents(events) {
   // Filter only upcoming events and limit to a maximum of 30 events
@@ -64,6 +76,25 @@ console.log(new Date());
     eventDate.classList.add("event-date");
     eventDate.textContent = new Date(event.dates.start.localDate).toLocaleDateString();
     eventInfo.appendChild(eventDate);
+
+    const eventLocation = document.createElement("span");
+    eventLocation.classList.add("event-location");
+
+    const eventVenue = event._embedded.venues[0];
+    if (eventVenue) {
+      const locationParts = [
+        eventVenue.city.name,
+        eventVenue.state ? eventVenue.state.stateCode : '', // Use stateCode for abbreviated state name
+        eventVenue.country.countryCode // Use countryCode for abbreviated country name
+      ];
+      
+      // Filters out any empty parts and joins the rest with commas
+      eventLocation.textContent = locationParts.filter(Boolean).join(', ');
+    } else {
+      eventLocation.textContent = 'Location not available';
+    }
+
+    eventInfo.appendChild(eventLocation);
 
     // Combine the localDate and localTime into a single string and create a Date object
     const eventDateTime = new Date(event.dates.start.localDate + "T" + (event.dates.start.localTime || "00:00:00"));
@@ -138,6 +169,11 @@ function fetchWeather(lat, lon, date) {
 function displayWeather(weather) {
  
   console.log(weather);
+
+  const weatherHeader = document.createElement("h2");
+  weatherHeader.textContent = "Predicted Weather";
+  eventDetails.appendChild(weatherHeader);
+
   const weatherInfo = document.createElement("div");
   weatherInfo.classList.add("weather-info");
 
@@ -156,6 +192,16 @@ function displayWeather(weather) {
   const windSpeed = document.createElement("p");
   windSpeed.textContent = `Wind Speed: ${weather.wind.speed} mph`;
   weatherInfo.appendChild(windSpeed);
+
+  const weatherIcon = document.createElement("img");
+  const iconId = weather.weather[0].icon;
+
+  // Set the src of the img element to the URL of the icon
+  weatherIcon.src = `http://openweathermap.org/img/w/${iconId}.png`;
+  weatherIcon.alt = "Weather Icon";
+
+  // Append the weatherIcon to the weatherInfo
+  weatherInfo.appendChild(weatherIcon);
 
   
 
