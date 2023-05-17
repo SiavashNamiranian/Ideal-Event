@@ -150,6 +150,10 @@ justify-content: right;
     /* margin-top: 20px;   */
 }
 
+h2{
+  font-size: 1.5vw;
+  font-weight: bold;
+}
 .event-item{
   display: flex;
   justify-content: space-between;
