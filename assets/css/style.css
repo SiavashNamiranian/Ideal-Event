@@ -137,10 +137,14 @@ main{
   width:30vw;
 }
 
+.event-location{
+  width
+}
+
 .event-date,
 .event-time {
  /* margin-left: 1rem; */
-width:10vw;
+width:content;
 display: flex;
 justify-content: right; 
     /* margin-top: 20px;   */
@@ -150,6 +154,7 @@ justify-content: right;
   display: flex;
   justify-content: space-between;
   padding: 2px;
+  font-size: 1vw;
 
 }
 
@@ -172,6 +177,6 @@ footer{
   margin-top:auto;
   bottom:0;
   width:100%;
-  height:30px;
+  height:10px;
   
 }
