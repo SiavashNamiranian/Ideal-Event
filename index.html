@@ -10,8 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/advancedFormat.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/toArray.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     </head>
@@ -19,13 +19,12 @@
     <!-- this class helps the nav bar be transparent -->
     <nav class="navbar is-transparent navbar-brand nav">
             <!-- IMG inserted in this class -->
-            <a class="navbar-item over">
-                <img id="img" src="./assets/css/Ideal_Events.jpg" alt="Ideal Events Logo">
-            </a>
-
-            <a id="contact" class="navbar-item" href="#footer">
+        <a class="navbar-item over">
+            <img id="img" src="./assets/css/Ideal_Events.jpg" alt="Ideal Events Logo">
+        </a>
+        <a id="contact" class="navbar-item" href="#footer">
                 Contact Us
-            </a>  
+        </a>  
     </nav>
     <!-- having the main allows the page to have proper setup, gave it a class just in case we need to give it adjustments -->
     <main class="main-container">
@@ -44,26 +43,24 @@
                                 <button type="submit" id="search-btn" >Search</button>
                             </div>
                          </section>
-
                         </form>
                         <!-- Add the dropdown menu here -->
-<!-- Add dropdown toggle class to div -->
-<div class="dropdown is-active" id="dropdown">
-    <div class="dropdown-trigger">
-        <button class="button" id="dropdown-button" aria-haspopup="true" aria-controls="dropdown-menu">
-            <span>Search History</span>
-            <span class="icon is-small">
-                <i class="fas fa-angle-down" aria-hidden="true"></i>
-            </span>
-        </button>
-    </div>
-    <div class="dropdown-menu" id="dropdown-menu" role="menu">
-        <div class="dropdown-content" id="search-history">
-            <!-- Your search history will be appended here -->
-        </div>
-    </div>
-</div>
-                                        
+                        <!-- Add dropdown toggle class to div -->
+                        <div class="dropdown is-active" id="dropdown">
+                            <div class="dropdown-trigger">
+                                <button class="button" id="dropdown-button" aria-haspopup="true" aria-controls="dropdown-menu">
+                                    <span>Search History</span>
+                                    <span class="icon is-small">
+                                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                                <div class="dropdown-content" id="search-history">
+                                    <!-- Your search history will be appended here -->
+                                </div>
+                            </div>
+                        </div>        
                         <section id="result" class="has-text-black">
                             <section id="events-list" > your search result appears here
                                 <!-- Inside the events-list section -->
@@ -71,37 +68,31 @@
                                     <div class="event-info">
                                         <!-- Event name, date, and time will be appended here -->
                                     </div>
-
                                 </div>
                             </section>
                             <section id="event-details">
                                 <!-- Event details and weather info will be displayed here -->
                             </section>
                         </section>
-                </div>        
-
-            </div>
-            <div id="error-modal">
-                <div id="error-modal-content">
-                  <span id="error-modal-close">&times;</span>
-                  <p id="error-message"></p>
-                </div>
-              </div>        
-        </body>
+                        </div>        
+                        </div>
+                        <div id="error-modal">
+                            <div id="error-modal-content">
+                            <span id="error-modal-close">&times;</span>
+                            <p id="error-message"></p>
+                            </div>
+                        </div>        
+                    </body>
     </main>
-    <div id="search-history" class="search-history-box"></div>
-
-    <!--Hero footer: will stick at the bottom -->
-    <footer id="footer" class=" has-background-black footeroverwrite">
-    <!--this hero let the text be centered at the bottom of the page-->
-    <div class="content has-text-centered">
-        <p> 
-            <a href="https://github.com/SiavashNamiranian/Ideal-Event">Github</a>
-        </p>
-    </div>
-
+        <div id="search-history" class="search-history-box"></div>
+            <!--Hero footer: will stick at the bottom -->
+            <footer id="footer" class=" has-background-black footeroverwrite">
+            <!--this hero let the text be centered at the bottom of the page-->
+            <div class="content has-text-centered">
+                <p> 
+                    <a href="https://github.com/SiavashNamiranian/Ideal-Event">Github</a>
+                </p>
+            </div>
     <script src="./assets/java/script.js"></script>
     </footer>
-
-
 </html>
