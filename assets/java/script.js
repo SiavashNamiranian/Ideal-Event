@@ -4,8 +4,12 @@ const eventDetails = document.getElementById("event-details");
 
 const apiKeyWeather = "d76d660f257500185c8632c23508ba25";
 const apiKeyTicketmaster = "BIjcHtV4tsaMzOb5wVMzgE5AHZWwS5hl";
+const errorModal = document.getElementById('error-modal');
+const errorModalClose = document.getElementById('error-modal-close');
+const errorMessage = document.getElementById("error-message");
 
 searchBtn.addEventListener("click", (event) => {
+  event.preventDefault();
   const location = document.getElementById("location").value;
   const eventName = document.getElementById("eventName").value;
 
@@ -14,15 +18,28 @@ searchBtn.addEventListener("click", (event) => {
   eventDetails.innerHTML = "";
 
   if (!location && !eventName) {
-    alert("Please enter a location or event name");
-    return;
-  }
+    errorMessage.textContent = "Please enter a location or event name";
+    errorModal.style.display = "block";  // Display the error modal
+  } else {
+    errorMessage.textContent = "";
+    errorModal.style.display = "none";  // Hide the error modal if it's displayed
+
   let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
   searchHistory.push({ location, eventName });
   localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 
   fetchEvents(location, eventName);
   event.preventDefault();
+  }
+});
+errorModalClose.addEventListener('click', () => {
+  errorModal.style.display = "none";
+});
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener('click', (event) => {
+  if (event.target == errorModal) {
+    errorModal.style.display = "none";
+  }
 });
 
 function displaySearchHistory() {
