@@ -17,11 +17,37 @@ searchBtn.addEventListener("click", (event) => {
     alert("Please enter a location or event name");
     return;
   }
+  let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+  searchHistory.push({ location, eventName });
+  localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 
   fetchEvents(location, eventName);
   event.preventDefault();
 });
 
+function displaySearchHistory() {
+  let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
+  const searchHistoryElement = document.getElementById('search-history');
+  searchHistoryElement.innerHTML = '';
+
+  searchHistory.forEach(search => {
+    const searchElement = document.createElement('p');
+    searchElement.textContent = `Location: ${search.location}, Event Name: ${search.eventName}`;
+
+    // Add a CSS class to the search element
+    searchElement.classList.add('search-history-item');
+
+    searchElement.addEventListener('click', () => {
+      // Clear previous search results
+      eventsList.innerHTML = "";
+      eventDetails.innerHTML = "";
+      fetchEvents(search.location, search.eventName);
+    });
+
+    searchHistoryElement.appendChild(searchElement);
+  });
+}
 
 
 function fetchEvents(location, eventName) {
@@ -207,3 +233,4 @@ function displayWeather(weather) {
 
   eventDetails.appendChild(weatherInfo);
 }
+displaySearchHistory();
