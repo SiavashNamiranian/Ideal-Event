@@ -159,9 +159,6 @@ main{
   width:30vw;
 }
 
-.event-location{
-  width
-}
 
 .event-date,
 .event-time {
@@ -206,4 +203,23 @@ h2{
   width:100%;
   height:fit-content;
   
+}
+
+.search-history-box {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-height: 150px; /* Adjust as needed */
+  overflow-y: auto;
+  background-color: #f8f8f8; /* Change this to any color you want */
+  border-top: 1px solid #ccc; /* Add a border at the top of the box */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.search-history-item {
+  cursor: pointer;
+  padding: 5px;
+  border-bottom: 1px solid #ccc; /* Add a border at the bottom of each item */
+  box-sizing: border-box;
 }
