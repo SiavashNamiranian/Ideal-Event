@@ -8,6 +8,65 @@ const errorModal = document.getElementById('error-modal');
 const errorModalClose = document.getElementById('error-modal-close');
 const errorMessage = document.getElementById("error-message");
 
+// Get dropdown button
+const dropdownButton = document.getElementById('dropdown-button');
+
+// Get dropdown
+const dropdown = document.getElementById('dropdown');
+
+// Get dropdown content
+const searchHistoryDiv = document.getElementById('search-history');
+
+// Search history array
+let searchHistory = [];
+
+// Toggle dropdown
+dropdownButton.addEventListener('click', function(event) {
+  event.stopPropagation();
+  dropdown.classList.toggle('is-active');
+
+  // Call the displaySearchHistory function only when dropdown is active
+  if(dropdown.classList.contains('is-active')) {
+    displaySearchHistory();
+    searchHistoryDiv.style.display = "block"; // or "flex"
+  } else {
+    searchHistoryDiv.style.display = "none";
+  }
+});
+
+
+// Close dropdown when clicked outside
+window.addEventListener('click', function(event) {
+  if (!dropdown.contains(event.target)) {
+    dropdown.classList.remove('is-active');
+  }
+});
+
+// Search function
+async function search(query) {
+  // Your existing search code goes here
+
+  // Add search query to history
+  searchHistory.unshift(query);
+
+  // Limit history to 5 items
+  if (searchHistory.length > 5) {
+    searchHistory.pop();
+  }
+
+  // Clear search history dropdown
+  searchHistoryDiv.innerHTML = '';
+
+  // Update search history dropdown
+  for (const item of searchHistory) {
+    const element = document.createElement('a');
+    element.textContent = item;
+    element.className = "dropdown-item";
+    searchHistoryDiv.appendChild(element);
+  }
+}
+
+
 searchBtn.addEventListener("click", (event) => {
   event.preventDefault();
   const location = document.getElementById("location").value;
@@ -24,9 +83,15 @@ searchBtn.addEventListener("click", (event) => {
     errorMessage.textContent = "";
     errorModal.style.display = "none";  // Hide the error modal if it's displayed
 
-  let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
-  searchHistory.push({ location, eventName });
-  localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+    let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+    searchHistory.unshift({ location, eventName });  // Add new search to the start
+  
+    // Limit history to 5 items
+    if (searchHistory.length > 5) {
+      searchHistory.pop();
+    }
+  
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 
   fetchEvents(location, eventName);
   event.preventDefault();
@@ -48,7 +113,10 @@ function displaySearchHistory() {
   const searchHistoryElement = document.getElementById('search-history');
   searchHistoryElement.innerHTML = '';
 
-  searchHistory.forEach(search => {
+  // Get the first 5 items, which are the most recent searches
+  let recentSearches = searchHistory.slice(0, 5);
+
+  recentSearches.forEach(search => {
     const searchElement = document.createElement('p');
     searchElement.textContent = `Location: ${search.location}, Event Name: ${search.eventName}`;
 
@@ -250,4 +318,3 @@ function displayWeather(weather) {
 
   eventDetails.appendChild(weatherInfo);
 }
-displaySearchHistory();
