@@ -149,7 +149,6 @@ function fetchEvents(location, eventName) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       displayEvents(data._embedded.events);
     })
     .catch((error) => console.error("Error fetching events:", error));
@@ -239,7 +238,6 @@ function displayEventDetails(event) {
   const eventTitle = document.createElement("h2");
   eventTitle.textContent = event.name;
   eventDetails.appendChild(eventTitle);
-  console.log("Event Coords:", eventCoords);
 
   const saleDate = document.createElement("p");
   saleDate.classList.add("adition-info");
@@ -264,7 +262,6 @@ function fetchWeather(lat, lon, date) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data)
       // Find the forecast closest to the event date
       const closestForecast = data.list.reduce((prev, curr) => {
         const prevTimeDiff = Math.abs(new Date(prev.dt_txt) - new Date(date));
@@ -278,8 +275,6 @@ function fetchWeather(lat, lon, date) {
 }
 
 function displayWeather(weather) {
- 
-  console.log(weather);
 
   const weatherHeader = document.createElement("h2");
   weatherHeader.textContent = "Predicted Weather";
